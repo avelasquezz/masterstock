@@ -1,7 +1,6 @@
 package model;
 
 public class User {
-	private String idType;
 	private int idNumber;
 	private String name;
 	private String lastName;
@@ -11,8 +10,7 @@ public class User {
 	private boolean isActive;
     private String accesLevel;
 
-	public User(String idType, int idNumber, String name, String lastName, String phoneNumber, String emailAddress, String password, boolean isActive, String accesLevel) {
-		this.idType = idType;
+	public User(int idNumber, String name, String lastName, String phoneNumber, String emailAddress, String password, boolean isActive, String accesLevel) {
 		this.idNumber = idNumber;
 		this.name = name;
 		this.lastName = lastName;
@@ -24,10 +22,6 @@ public class User {
 	}
 
 	// Getter methods.
-    public String getIdType() {
-    	return this.idType;
-    }
-
     public int getIdNumber() {
         return this.idNumber;
     }
@@ -61,10 +55,6 @@ public class User {
     }
 
     // Setter methods.
-    public void setIdType(String idType) {
-        this.idType = idType;
-    }
-
     public void setIdNumber(int idNumber) {
         this.idNumber = idNumber;
     }

@@ -36,7 +36,6 @@ public class UserService {
 
         for (User user : userRepository.getUsersList()) {
             String[] tableRow = {
-                user.getIdType(),
                 String.valueOf(user.getIdNumber()),
                 user.getName(),
                 user.getLastName(),

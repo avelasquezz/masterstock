@@ -46,7 +46,7 @@ public class ManageUsersView extends JFrame {
         this.usersTableTitle.setFont(new Font("Arial", Font.BOLD, 48));
         this.usersTableTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-        String[] tableColumns = {"ID Type", "ID Number", "Name", "Last name", "Phone number", "Email", "Password", "State", "Access level"};
+        String[] tableColumns = {"ID Number", "Name", "Last name", "Phone number", "Email", "Password", "State", "Access level"};
         this.usersTableModel = new DefaultTableModel(tableColumns, 0);
         this.usersTable = new JTable(usersTableModel);
 

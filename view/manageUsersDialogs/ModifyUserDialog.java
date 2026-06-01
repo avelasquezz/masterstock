@@ -17,8 +17,6 @@ import java.awt.event.ActionListener;
 public class ModifyUserDialog extends JDialog {
     private UserService userService = UserService.getInstance();
     
-    private JLabel idTypeTextFieldLabel;
-    private JTextField idTypeTextField;
     private JLabel idNumberTextFieldLabel;
     private JTextField idNumberTextField;
     private JLabel nameTextFieldLabel;
@@ -41,7 +39,7 @@ public class ModifyUserDialog extends JDialog {
     public ModifyUserDialog(JTable usersTable) {
         // Dialog config
         setTitle("Modify user");
-        setSize(500, 650);
+        setSize(500, 550);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // UI components
@@ -50,20 +48,11 @@ public class ModifyUserDialog extends JDialog {
         dialogPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         dialogPanel.setBorder(new EmptyBorder(20, 10, 20, 10));
         
-        this.idTypeTextFieldLabel = new JLabel("ID Type");
-        this.idTypeTextFieldLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-        this.idTypeTextFieldLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
-        this.idTypeTextField = new JTextField((String) usersTable.getValueAt(usersTable.getSelectedRow(), 0));
-        this.idTypeTextField.setFont(new Font("Arial", Font.PLAIN, 16));
-        this.idTypeTextField.setMaximumSize(new Dimension(200, 40));
-        this.idTypeTextField.setBorder(new EmptyBorder(10, 10, 10, 10));
-
         this.idNumberTextFieldLabel = new JLabel("ID Number");
         this.idNumberTextFieldLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         this.idNumberTextFieldLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-        this.idNumberTextField = new JTextField((String) usersTable.getValueAt(usersTable.getSelectedRow(), 1));
+        this.idNumberTextField = new JTextField((String) usersTable.getValueAt(usersTable.getSelectedRow(), 0));
         this.idNumberTextField.setFont(new Font("Arial", Font.PLAIN, 16));
         this.idNumberTextField.setMaximumSize(new Dimension(200, 40));
         this.idNumberTextField.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -72,7 +61,7 @@ public class ModifyUserDialog extends JDialog {
         this.nameTextFieldLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         this.nameTextFieldLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-        this.nameTextField = new JTextField((String) usersTable.getValueAt(usersTable.getSelectedRow(), 2));
+        this.nameTextField = new JTextField((String) usersTable.getValueAt(usersTable.getSelectedRow(), 1));
         this.nameTextField.setFont(new Font("Arial", Font.PLAIN, 16));
         this.nameTextField.setMaximumSize(new Dimension(200, 40));
         this.nameTextField.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -81,7 +70,7 @@ public class ModifyUserDialog extends JDialog {
         this.lastNameTextFieldLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         this.lastNameTextFieldLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-        this.lastNameTextField = new JTextField((String) usersTable.getValueAt(usersTable.getSelectedRow(), 3));
+        this.lastNameTextField = new JTextField((String) usersTable.getValueAt(usersTable.getSelectedRow(), 2));
         this.lastNameTextField.setFont(new Font("Arial", Font.PLAIN, 16));
         this.lastNameTextField.setMaximumSize(new Dimension(200, 40));
         this.lastNameTextField.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -90,7 +79,7 @@ public class ModifyUserDialog extends JDialog {
         this.phoneNumberTextFieldLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         this.phoneNumberTextFieldLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-        this.phoneNumberTextField = new JTextField((String) usersTable.getValueAt(usersTable.getSelectedRow(), 4));
+        this.phoneNumberTextField = new JTextField((String) usersTable.getValueAt(usersTable.getSelectedRow(), 3));
         this.phoneNumberTextField.setFont(new Font("Arial", Font.PLAIN, 16));
         this.phoneNumberTextField.setMaximumSize(new Dimension(200, 40));
         this.phoneNumberTextField.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -99,7 +88,7 @@ public class ModifyUserDialog extends JDialog {
         this.emailAddressTextFieldLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         this.emailAddressTextFieldLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-        this.emailAddressTextField = new JTextField((String) usersTable.getValueAt(usersTable.getSelectedRow(), 5));
+        this.emailAddressTextField = new JTextField((String) usersTable.getValueAt(usersTable.getSelectedRow(), 4));
         this.emailAddressTextField.setFont(new Font("Arial", Font.PLAIN, 16));
         this.emailAddressTextField.setMaximumSize(new Dimension(200, 40));
         this.emailAddressTextField.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -108,7 +97,7 @@ public class ModifyUserDialog extends JDialog {
         this.passwordTextFieldLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         this.passwordTextFieldLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-        this.passwordTextField = new JTextField((String) usersTable.getValueAt(usersTable.getSelectedRow(), 6));
+        this.passwordTextField = new JTextField((String) usersTable.getValueAt(usersTable.getSelectedRow(), 5));
         this.passwordTextField.setFont(new Font("Arial", Font.PLAIN, 16));
         this.passwordTextField.setMaximumSize(new Dimension(200, 40));
         this.passwordTextField.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -119,7 +108,7 @@ public class ModifyUserDialog extends JDialog {
         
         String[] stateOptions = {"Active", "Inactive"};
         this.stateComboBox = new JComboBox<>(stateOptions);
-        this.stateComboBox.setSelectedItem((String) usersTable.getValueAt(usersTable.getSelectedRow(), 7));
+        this.stateComboBox.setSelectedItem((String) usersTable.getValueAt(usersTable.getSelectedRow(), 6));
         this.stateComboBox.setFont(new Font("Arial", Font.PLAIN, 16));
         this.stateComboBox.setMaximumSize(new Dimension(200, 40));
 
@@ -129,7 +118,7 @@ public class ModifyUserDialog extends JDialog {
         
         String[] accesLevelOptions = {"Administrator", "Assistant"};
         this.accesLevelComboBox = new JComboBox<>(accesLevelOptions);
-        this.accesLevelComboBox.setSelectedItem((String) usersTable.getValueAt(usersTable.getSelectedRow(), 8));
+        this.accesLevelComboBox.setSelectedItem((String) usersTable.getValueAt(usersTable.getSelectedRow(), 7));
         this.accesLevelComboBox.setFont(new Font("Arial", Font.PLAIN, 16));
         this.accesLevelComboBox.setMaximumSize(new Dimension(200, 40));
 
@@ -161,10 +150,6 @@ public class ModifyUserDialog extends JDialog {
         rightPanel.setBorder(new EmptyBorder(20, 10, 0, 10));
     
         // Add components to left panel
-        leftPanel.add(this.idTypeTextFieldLabel);
-        leftPanel.add(Box.createRigidArea(new Dimension(0, 5)));
-        leftPanel.add(this.idTypeTextField);
-        leftPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         leftPanel.add(this.idNumberTextFieldLabel);
         leftPanel.add(Box.createRigidArea(new Dimension(0, 5)));
         leftPanel.add(this.idNumberTextField);
@@ -176,6 +161,10 @@ public class ModifyUserDialog extends JDialog {
         leftPanel.add(this.lastNameTextFieldLabel);
         leftPanel.add(Box.createRigidArea(new Dimension(0, 5)));
         leftPanel.add(this.lastNameTextField);
+        leftPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        leftPanel.add(this.accesLevelComboBoxLabel);
+        leftPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+        leftPanel.add(this.accesLevelComboBox);
 
         // Add components to right panel
         rightPanel.add(this.phoneNumberTextFieldLabel);
@@ -190,9 +179,9 @@ public class ModifyUserDialog extends JDialog {
         rightPanel.add(Box.createRigidArea(new Dimension(0, 5)));
         rightPanel.add(this.passwordTextField);
         rightPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-        rightPanel.add(this.accesLevelComboBoxLabel);
+        rightPanel.add(this.stateComboBoxLabel);
         rightPanel.add(Box.createRigidArea(new Dimension(0, 5)));
-        rightPanel.add(this.accesLevelComboBox);
+        rightPanel.add(this.stateComboBox);
 
         // Add components to main panel
         mainPanel.add(leftPanel);
@@ -202,10 +191,6 @@ public class ModifyUserDialog extends JDialog {
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
 
-        bottomPanel.add(this.stateComboBoxLabel);
-        bottomPanel.add(Box.createRigidArea(new Dimension(0, 5)));
-        bottomPanel.add(this.stateComboBox);
-        bottomPanel.add(Box.createRigidArea(new Dimension(0, 40)));
         bottomPanel.add(this.acceptButton);
         bottomPanel.add(Box.createRigidArea(new Dimension(0, 5)));
         bottomPanel.add(this.errorMessageLabel);
@@ -224,7 +209,6 @@ public class ModifyUserDialog extends JDialog {
         acceptButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    String newUserIdType = ModifyUserDialog.this.idTypeTextField.getText();
                     int newUserIdNumber = Integer.parseInt(ModifyUserDialog.this.idNumberTextField.getText());
                     String newUserName = ModifyUserDialog.this.nameTextField.getText();
                     String newUserLastName = ModifyUserDialog.this.lastNameTextField.getText();
@@ -234,7 +218,7 @@ public class ModifyUserDialog extends JDialog {
                     boolean newUserState = ModifyUserDialog.this.stateComboBox.getSelectedItem().toString() == "Active" ? true : false;
                     String newUserAccesLevel = ModifyUserDialog.this.accesLevelComboBox.getSelectedItem().toString();
             
-                    User modifiedUser = new User(newUserIdType, newUserIdNumber, newUserName, newUserLastName, newUserPhoneNumber, newUserEmailAddress, newUserPassword, newUserState, newUserAccesLevel);
+                    User modifiedUser = new User(newUserIdNumber, newUserName, newUserLastName, newUserPhoneNumber, newUserEmailAddress, newUserPassword, newUserState, newUserAccesLevel);
             
                     ModifyUserDialog.this.userService.getUserRepository().updateUser(modifiedUser);
                     ModifyUserDialog.this.userService.updateTable((DefaultTableModel) usersTable.getModel());

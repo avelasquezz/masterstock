@@ -17,8 +17,6 @@ import java.awt.event.ActionListener;
 public class AddUserDialog extends JDialog {
     private UserService userService = UserService.getInstance();
     
-    private JLabel idTypeTextFieldLabel;
-    private JTextField idTypeTextField;
     private JLabel idNumberTextFieldLabel;
     private JTextField idNumberTextField;
     private JLabel nameTextFieldLabel;
@@ -41,7 +39,7 @@ public class AddUserDialog extends JDialog {
     public AddUserDialog(JTable usersTable) {
         // Dialog config
         setTitle("Add user");
-        setSize(500, 650);
+        setSize(500, 550);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // UI components
@@ -50,15 +48,6 @@ public class AddUserDialog extends JDialog {
         dialogPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         dialogPanel.setBorder(new EmptyBorder(20, 10, 20, 10));
         
-        this.idTypeTextFieldLabel = new JLabel("ID Type");
-        this.idTypeTextFieldLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-        this.idTypeTextFieldLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
-        this.idTypeTextField = new JTextField();
-        this.idTypeTextField.setFont(new Font("Arial", Font.PLAIN, 16));
-        this.idTypeTextField.setMaximumSize(new Dimension(200, 40));
-        this.idTypeTextField.setBorder(new EmptyBorder(10, 10, 10, 10));
-
         this.idNumberTextFieldLabel = new JLabel("ID Number");
         this.idNumberTextFieldLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         this.idNumberTextFieldLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -159,10 +148,6 @@ public class AddUserDialog extends JDialog {
         rightPanel.setBorder(new EmptyBorder(20, 10, 0, 10));
     
         // Add components to left panel
-        leftPanel.add(this.idTypeTextFieldLabel);
-        leftPanel.add(Box.createRigidArea(new Dimension(0, 5)));
-        leftPanel.add(this.idTypeTextField);
-        leftPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         leftPanel.add(this.idNumberTextFieldLabel);
         leftPanel.add(Box.createRigidArea(new Dimension(0, 5)));
         leftPanel.add(this.idNumberTextField);
@@ -174,6 +159,10 @@ public class AddUserDialog extends JDialog {
         leftPanel.add(this.lastNameTextFieldLabel);
         leftPanel.add(Box.createRigidArea(new Dimension(0, 5)));
         leftPanel.add(this.lastNameTextField);
+        leftPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        leftPanel.add(this.accesLevelComboBoxLabel);
+        leftPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+        leftPanel.add(this.accesLevelComboBox);
 
         // Add components to right panel
         rightPanel.add(this.phoneNumberTextFieldLabel);
@@ -188,9 +177,9 @@ public class AddUserDialog extends JDialog {
         rightPanel.add(Box.createRigidArea(new Dimension(0, 5)));
         rightPanel.add(this.passwordTextField);
         rightPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-        rightPanel.add(this.accesLevelComboBoxLabel);
+        rightPanel.add(this.stateComboBoxLabel);
         rightPanel.add(Box.createRigidArea(new Dimension(0, 5)));
-        rightPanel.add(this.accesLevelComboBox);
+        rightPanel.add(this.stateComboBox);
 
         // Add components to main panel
         mainPanel.add(leftPanel);
@@ -200,10 +189,6 @@ public class AddUserDialog extends JDialog {
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
 
-        bottomPanel.add(this.stateComboBoxLabel);
-        bottomPanel.add(Box.createRigidArea(new Dimension(0, 5)));
-        bottomPanel.add(this.stateComboBox);
-        bottomPanel.add(Box.createRigidArea(new Dimension(0, 40)));
         bottomPanel.add(this.acceptButton);
         bottomPanel.add(Box.createRigidArea(new Dimension(0, 5)));
         bottomPanel.add(this.errorMessageLabel);
@@ -222,7 +207,6 @@ public class AddUserDialog extends JDialog {
         acceptButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    String newUserIdType = AddUserDialog.this.idTypeTextField.getText();
                     int newUserIdNumber = Integer.parseInt(AddUserDialog.this.idNumberTextField.getText());
                     String newUserName = AddUserDialog.this.nameTextField.getText();
                     String newUserLastName = AddUserDialog.this.lastNameTextField.getText();
@@ -232,7 +216,7 @@ public class AddUserDialog extends JDialog {
                     boolean newUserState = AddUserDialog.this.stateComboBox.getSelectedItem().toString() == "Active" ? true : false;
                     String newUserAccesLevel = AddUserDialog.this.accesLevelComboBox.getSelectedItem().toString();
                     
-                    User newUser = new User(newUserIdType, newUserIdNumber, newUserName, newUserLastName, newUserPhoneNumber, newUserEmailAddress, newUserPassword, newUserState, newUserAccesLevel);
+                    User newUser = new User(newUserIdNumber, newUserName, newUserLastName, newUserPhoneNumber, newUserEmailAddress, newUserPassword, newUserState, newUserAccesLevel);
                     AddUserDialog.this.userService.getUserRepository().addUser(newUser);
                     AddUserDialog.this.userService.updateTable((DefaultTableModel) usersTable.getModel());
                     dispose();
