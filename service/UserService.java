@@ -42,7 +42,7 @@ public class UserService {
                 user.getPhoneNumber(),
                 user.getEmailAddress(),
                 user.getPassword(),
-                (user.getState() == true) ? "Activo" : "Inactivo",
+                (user.getState() == true) ? "Active" : "Inactive",
                 user.getAccesLevel()
             };
             productsTableModel.addRow(tableRow);
